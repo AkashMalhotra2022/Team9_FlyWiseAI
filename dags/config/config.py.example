@@ -1,0 +1,28 @@
+"""
+Configuration - Template File
+Copy this to config.py and fill in your credentials
+"""
+import os
+
+# All values from environment variables - NO defaults with secrets
+API_KEY = os.getenv('AVIATION_EDGE_API_KEY')
+API_BASE_URL = os.getenv('AVIATION_EDGE_BASE_URL')
+
+if not API_KEY:
+    raise ValueError("AVIATION_EDGE_API_KEY must be set")
+
+AVIATION_EDGE_CONFIG = {
+    'airport_code': os.getenv('AIRPORT_CODE'),
+    'flight_type': os.getenv('FLIGHT_TYPE', 'departure'),
+    'date_from_days_ago': int(os.getenv('DATE_FROM_DAYS_AGO', '2')),
+    'date_to_days_ago': int(os.getenv('DATE_TO_DAYS_AGO', '1')),
+}
+
+SNOWFLAKE_CONFIG = {
+    'user': os.getenv('SNOWFLAKE_USER'),
+    'password': os.getenv('SNOWFLAKE_PASSWORD'),
+    'account': os.getenv('SNOWFLAKE_ACCOUNT'),
+    'warehouse': os.getenv('SNOWFLAKE_WAREHOUSE'),
+    'database': os.getenv('SNOWFLAKE_DATABASE'),
+    'schema': os.getenv('SNOWFLAKE_SCHEMA'),
+}
