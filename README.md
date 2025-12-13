@@ -32,6 +32,46 @@ This command will spin up five Docker containers on your machine, each for a dif
 
 When all five containers are ready the command will open the browser to the Airflow UI at http://localhost:8080/. You should also be able to access your Postgres Database at 'localhost:5432/postgres' with username 'postgres' and password 'postgres'.
 
+
+## 🏗️ System Architecture
+
+FlyWise is built using an agent-based architecture with a clear separation
+between **Notification** and **Recovery** responsibilities.
+
+![FlyWise Architecture](diagrams/architecture/flywise_architecture.png)
+
+
+### Key Components
+- **Notification Agent**
+  - Monitors live flight data in Snowflake
+  - Detects delay threshold breaches
+  - Generates passenger notifications using Snowflake Cortex (Mistral)
+  - Uses an outbox pattern for reliable delivery
+
+- **Recovery Agent**
+  - User-facing Streamlit agent
+  - Activated after a delay notification
+  - Provides alternate flights, hotels, food, attractions, and airport activities
+  - Powered by Snowflake Cortex LLMs and embeddings
+
+
+## 🔁 User Flow
+
+The following diagram shows how a user interacts with FlyWise from flight
+monitoring to recovery assistance during delays.
+
+![FlyWise User Flow](diagrams/architecture/user_flow.png)
+
+### Flow Summary
+1. User adds a flight to monitor
+2. Notification Agent detects delay
+3. User receives delay alert
+4. Recovery Agent assists with:
+   - Alternate flights
+   - Hotels
+   - Food & attractions
+   - Airport activities
+
 Note: If you already have either of the above ports allocated, you can either [stop your existing Docker containers or change the port](https://www.astronomer.io/docs/astro/cli/troubleshoot-locally#ports-are-not-available-for-my-local-airflow-webserver).
 
 Deploy Your Project to Astronomer
