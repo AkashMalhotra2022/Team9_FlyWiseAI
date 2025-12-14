@@ -217,23 +217,13 @@ astro dev run connections test snowflake_default
 # Check DAG processor logs
 astro dev logs dag-processor
 ```
-
----
-
-## 📈 Roadmap
-
-- [ ] Multi-language support
-- [ ] Push notifications (mobile)
-- [ ] Integration with Google Calendar
-- [ ] Weather-based recommendations
-- [ ] Loyalty program integration
-- [ ] Group travel support
-
 ---
 
 ## 👥 Contributors
 
-- Your Name - Lead Developer
+- Akash Malhotra
+- Moinuddin Mohammed
+- Nikhil Choudhari
 
 ---
 
